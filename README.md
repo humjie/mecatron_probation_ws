@@ -2,15 +2,28 @@
 # Guide for my solution
 
 ## 1. How to Run
-- Navigate to UnitySim_Linux, then run
+- Navigate to UnitySim_Linux, then run the simulation
 ```bash
 ./UnitySim.x86_64
 ```
 - Clone the repo
 ```bash
-git clone 
+git clone https://github.com/humjie/mecatron_probation_ws.git
+cd mecatron_probation_ws
 ```
-
+- Source
+```bash
+source /opt/ros/humble/setup.bash
+source /install/local_setup.bash
+```
+- Colcon build
+```bash
+colcon build
+```
+- run the launch file
+```bash
+ros2 launch launch_all launch_all.py
+```
 
 
 
