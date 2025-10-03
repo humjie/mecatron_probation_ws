@@ -1,5 +1,5 @@
 # Probation Task: Going Through Gate with Unity Simulation
-# Guide for my solution
+# Guide and explanation for my solution
 
 ## 1. How to Run
 - Navigate to UnitySim_Linux, then run the simulation
@@ -24,6 +24,48 @@ colcon build
 ```bash
 ros2 launch launch_all launch_all.py
 ```
+
+## 2. Overview
+The **GateNavigationController** in **control** package is a ROS2 node designed to autonomously navigate a drone through gates while avoiding red flare obstacles. The solution implements a state-based control system with robust detection filtering and intelligent movement strategies.
+
+## 3. Chain of Thoughts & Design Philosophy
+### 1. Problem Analysis
+**Primary Goal:** Navigate through gates while maintaining proper alignment
+Secondary Goal: Avoid red flare obstacles that block the path
+**Challenges:**
+- Noisy vision detection requiring filtering
+- Need for smooth, stable movement without much oscillations
+- State management for different phases of navigation
+
+### 2. Workspace Structure
+```
+probation_ws/
+├── src/
+│   ├── ROS-TCP-Endpoint/          # Unity-ROS bridge
+│   └── vision/
+│       └── vision_msgs/           # Custom message definitions
+│   └── control/
+│       └── control/
+│           └── control.py         # GateNavigationController node
+│   └── launch_all/
+│       └── launch/
+│           └── launch_all.py      # Main launch file
+```
+
+### 3. Solution Architecture
+**Core Control Flow**
+```
+Vision Input → Detection Filtering → Obstacle Avoidance → Gate Alignment → Navigation
+```
+**State Management**
+The controller uses multiple state variables to track:
+- Detection State: has_gate, consecutive_detections, consecutive_no_detections
+- Alignment State: is_well_aligned, alignment_start_time
+- Proximity State: is_close_to_gate, close_gate_start_time
+- Movement State: last_move, last_ratio_trend
+
+
+
 
 
 
