@@ -34,6 +34,7 @@ The **GateNavigationController** in **control** package is a ROS2 node designed 
 
 **Secondary Goal:** Avoid red flare obstacles that block the path
 
+
 **Challenges:**
 - Noisy vision detection requiring filtering
 - Need for smooth, stable movement without much oscillations
@@ -60,13 +61,16 @@ probation_ws/
 Vision Input → Detection Filtering → Obstacle Avoidance → Gate Alignment → Navigation
 ```
 
+
 **State Management**
 
 The controller uses multiple state variables to track:
+
 - Detection State: has_gate, consecutive_detections, consecutive_no_detections
 - Alignment State: is_well_aligned, alignment_start_time
 - Proximity State: is_close_to_gate, close_gate_start_time
 - Movement State: last_move, last_ratio_trend
+
 
 **Control Priorities (High to Low)**
 
@@ -81,9 +85,10 @@ The controller uses multiple state variables to track:
 
 The controller subscribes to **BoundingBoxArray** messages and processes:
 
-**Gate Detection: **Identifies gates and extracts position/dimensions
+- **Gate Detection: **Identifies gates and extracts position/dimensions
 
-**Red Flare Detection: **Identifies blocking obstacles with size thresholds
+- **Red Flare Detection: **Identifies blocking obstacles with size thresholds
+
 
 **Noise Filtering Strategy**
 ```
@@ -92,43 +97,54 @@ no_detection_threshold = 5   # Confirm gate absence
 frames_threshold = 3         # Confirm movement trends
 ```
 
+
 **Velocity Publishing**
+
 The controller publishes to separate velocity topics:
 
-**x: **Forward/backward movement
-**y: **Left/right movement
-**z: **Up/down movement
-**r: **Rotation (yaw)
+- **x: **Forward/backward movement
+- **y: **Left/right movement
+- **z: **Up/down movement
+- **r: **Rotation (yaw)
+
 
 **Obstacle Avoidance Strategy**
-**Left Flare: **Move right while continuing forward
-**Right Flare: **Move left while maintaining progress
+- **Left Flare: **Move right while continuing forward
+- **Right Flare: **Move left while maintaining progress
+
 
 **Multi-Stage Alignment Process**
-**Y-Axis Alignment: **Vertical centering (up/down movement)
-**X-Axis Alignment: **Horizontal centering (rotation)
-**Ratio Optimization: **Lateral movement for optimal gate perspective
+- **Y-Axis Alignment: **Vertical centering (up/down movement)
+- **X-Axis Alignment: **Horizontal centering (rotation)
+- **Ratio Optimization: **Lateral movement for optimal gate perspective
+
 
 **Performance Optimizations**
 **1. Adaptive Movement Speeds**
-Gentle Movements: 0.3 velocity for uncertain conditions
-Standard Movements: 0.5-1.0 velocity for confirmed actions
-Combined Movements: Forward + lateral for efficient flare avoidance
+- Gentle Movements: 0.3 velocity for uncertain conditions
+- Standard Movements: 0.5-1.0 velocity for confirmed actions
+- Combined Movements: Forward + lateral for efficient flare avoidance
+- 
 **2. Frame Persistence**
-Prevents oscillatory behavior from single-frame noise
-Ensures stable trend confirmation before direction changes
+- Prevents oscillatory behavior from single-frame noise
+- Ensures stable trend confirmation before direction changes
+- 
 **3. Position Tracking**
-Validates that movements improve centering
-Provides feedback for movement effectiveness
+- Validates that movements improve centering
+- Provides feedback for movement effectiveness
+- 
 **4. Vision System Noise**
-Consecutive frame requirements for state changes
-Cached last known gate position during noise periods
+- Consecutive frame requirements for state changes
+- Cached last known gate position during noise periods
+- 
 **5. Ratio Alignment Challenges**
-Trend-based movement with direction reversal capability
-Gentle movements when trend is uncertain
+- Trend-based movement with direction reversal capability
+- Gentle movements when trend is uncertain
+- 
 **6. Gate Loss During Navigation**
-Continues forward if previously close to gate (passed through)
-Initiates search pattern if gate lost during approach
+- Continues forward if previously close to gate (passed through)
+- Initiates search pattern if gate lost during approach
+
 
 **Launch Files**
 ```bash
@@ -138,11 +154,15 @@ ros2 launch launch_all launch_all.py
 
 ### 5. Future Improvements
 **Potential Enhancements**
+
 - Adaptive Thresholds: Dynamic tolerance based on gate distance
 - Predictive Movement: Anticipate gate movement from velocity
 - Machine Learning: Learn optimal parameters from successful runs
 - Multi-Gate Planning: Handle sequences of gates with path planning
+
+
 **Code Quality Improvements**
+
 - Modularization: Extract alignment logic into separate classes
 - Configuration File: Move parameters to external config
 - Unit Testing: Add comprehensive test coverage
