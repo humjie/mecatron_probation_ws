@@ -125,23 +125,23 @@ The controller publishes to separate velocity topics:
 - **Gentle Movements:** 0.3 velocity for uncertain conditions
 - **Standard Movements:** 0.5-1.0 velocity for confirmed actions
 - **Combined Movements:** Forward + lateral for efficient flare avoidance
-- 
+  
 **2. Frame Persistence**
 - Prevents oscillatory behavior from single-frame noise
 - Ensures stable trend confirmation before direction changes
-- 
+  
 **3. Position Tracking**
 - Validates that movements improve centering
 - Provides feedback for movement effectiveness
-- 
+  
 **4. Vision System Noise**
 - Consecutive frame requirements for state changes
 - Cached last known gate position during noise periods
-- 
+  
 **5. Ratio Alignment Challenges**
 - Trend-based movement with direction reversal capability
 - Gentle movements when trend is uncertain
-- 
+  
 **6. Gate Loss During Navigation**
 - Continues forward if previously close to gate (passed through)
 - Initiates search pattern if gate lost during approach
