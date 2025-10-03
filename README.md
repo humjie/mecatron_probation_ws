@@ -120,6 +120,7 @@ The controller publishes to separate velocity topics:
 
 
 **Performance Optimizations**
+
 **1. Adaptive Movement Speeds**
 - **Gentle Movements:** 0.3 velocity for uncertain conditions
 - **Standard Movements:** 0.5-1.0 velocity for confirmed actions
