@@ -1,6 +1,10 @@
 # Probation Task: Going Through Gate with Unity Simulation
 # Guide and explanation for my solution
 
+**Demo Video:**
+https://entuedu-my.sharepoint.com/:f:/g/personal/mhu005_e_ntu_edu_sg/Eir9tjmroeFHnitjR-OGKN8BzMn1J4eauo00hyYY3ZydCg?e=guTsiv
+
+
 ## 1. How to Run
 - Navigate to UnitySim_Linux, then run the simulation
 ```bash
