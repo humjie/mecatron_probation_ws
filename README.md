@@ -1,4 +1,21 @@
 # Probation Task: Going Through Gate with Unity Simulation
+# Guide for my solution
+
+## 1. How to Run
+- Navigate to UnitySim_Linux, then run
+```bash
+./UnitySim.x86_64
+```
+- Clone the repo
+```bash
+git clone 
+```
+
+
+
+
+# Below is the part forked from original repo
+# Probation Task: Going Through Gate with Unity Simulation
 
 This repository contains the probation task, focusing on autonomous gate navigation using Unity simulation integrated with ROS 2.
 
